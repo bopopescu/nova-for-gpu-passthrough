@@ -4039,6 +4039,9 @@ class LibvirtDriver(driver.ComputeDriver):
             guest.features.append(vconfig.LibvirtConfigGuestFeatureACPI())
             guest.features.append(vconfig.LibvirtConfigGuestFeatureAPIC())
 
+        if (virt_type in ("kvm")):
+            guest.features.append(vconfig.LibvirtConfigGuestFeatureKVM())
+
         if (virt_type in ("qemu", "kvm") and
                 os_type == 'windows'):
             hv = vconfig.LibvirtConfigGuestFeatureHyperV()

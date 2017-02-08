@@ -1971,6 +1971,17 @@ class LibvirtConfigGuestFeatureACPI(LibvirtConfigGuestFeature):
         super(LibvirtConfigGuestFeatureACPI, self).__init__("acpi",
                                                             **kwargs)
 
+class LibvirtConfigGuestFeatureKVM(LibvirtConfigGuestFeature):
+
+    def __init__(self, **kwargs):
+        super(LibvirtConfigGuestFeatureKVM, self).__init__("kvm",
+                                                           **kwargs)
+
+    def format_dom(self):
+        kvm = super(LibvirtConfigGuestFeatureKVM, self).format_dom()
+        kvm.append(etree.Element("hidden", state="on"))
+
+        return kvm
 
 class LibvirtConfigGuestFeatureAPIC(LibvirtConfigGuestFeature):
 
